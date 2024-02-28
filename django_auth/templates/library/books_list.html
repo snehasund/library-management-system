@@ -1,0 +1,17 @@
+<!-- templates/library/books_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books List</title>
+</head>
+<body>
+    <h1>Books List</h1>
+    <ul>
+    {% for book in books %}
+        <li>{{ book.title }} by {{ book.author }} (ISBN: {{ book.isbn }})</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
