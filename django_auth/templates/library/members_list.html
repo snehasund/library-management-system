@@ -5,8 +5,90 @@
 <head>
     <meta charset="UTF-8">
     <title>Members List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        #banner{
+            background-color: rgb(207, 207, 241);
+            height: 140px;
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            text-align: center;
+            font-size: 20px;
+            font-style: italic;
+        }
+        #banner-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        #heading{
+            margin: 0px;
+        }
+        .top{
+            margin-top: 35px;
+        }
+        select{
+            filter: drop-shadow(2px 2px 2px lightgray);
+            height: 25px;
+            margin-bottom: -5px;
+            border-radius: 4px;
+            border-style:solid;
+            border-color: gray;
+            border-width: 2px;
+        }
+        input::placeholder{
+            font-family: "DM Sans";
+            font-size: 14px;
+        }
+        input{
+            filter: drop-shadow(2px 2px 2px lightgray);
+            height: 25px;
+            margin-bottom: -5px;
+            border-radius: 4px;
+            border-style:solid;
+        }
+        button{
+            padding: 8px 16px;
+            border-style:solid;
+            border: 0.5px solid;
+            filter: drop-shadow(2px 2px 3px gray);
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: rgb(180, 180, 236);
+            color: black;
+        }
+        button:hover{
+            background-color: rgb(207, 207, 241)
+        }
+        #outer{
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        #card{
+            border: 1px solid gray;
+            box-shadow: 7px 7px 9px lightgray;
+            border-radius: 10px;
+            padding: 30px 50px;
+            margin-top: 60px;
+            background-color: rgb(245, 245, 255);
+        }
+        body{
+            font-size: 26px;
+            font-family: "DM Sans";
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
+    <header id="banner"><div id="banner-container"><h1 id="heading" class="top">welcome to sneb's bookclub</h1><h4 id="heading">👑👑👑👑</h4><h3 id="heading">invite only</h3></div></header>
     <h1>Members List</h1>
     <ul>
     {% for member in members %}
