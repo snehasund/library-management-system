@@ -11,6 +11,10 @@ class AuthorForm(forms.ModelForm):
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
+        widgets = {
+            'title': forms.TextInput(attrs={'placeholder': 'book title'}),
+            'isbn': forms.TextInput(attrs={'placeholder': 'ISBN number'}),
+        }
         fields = '__all__'  # Specify the fields you want to include in the form
 
 class MemberForm(forms.ModelForm):
