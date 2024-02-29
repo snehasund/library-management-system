@@ -7,6 +7,10 @@
 {% if user.is_authenticated %}
 <p>Hi {{ user.username }}!</p>
 <p><a href="{% url 'password_change' %}">Password Change</a></p>
+<a href="{% url 'books_list' %}">Books List</a> <!-- New line for books_list.html -->
+<a href="{% url 'add_book' %}">Add a Book</a> <!-- New line for book_form.html -->
+<a href="{% url 'members_list' %}">List of Members</a> <!-- New line for members_list.html -->
+<a href="{% url 'add_member' %}">Add a Member</a> <!-- New line for members_form.html -->
 <form action="{% url 'logout' %}" method="post">
   {% csrf_token %}
   <button type="submit">Log Out</button>
