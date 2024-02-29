@@ -5,16 +5,21 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<p>Hi {{ user.username }}!</p>
-<p><a href="{% url 'password_change' %}">Password Change</a></p>
-<a href="{% url 'books_list' %}">Books List</a> <!-- New line for books_list.html -->
-<a href="{% url 'add_book' %}">Add a Book</a> <!-- New line for book_form.html -->
-<a href="{% url 'members_list' %}">List of Members</a> <!-- New line for members_list.html -->
-<a href="{% url 'add_member' %}">Add a Member</a> <!-- New line for members_form.html -->
+<div id="outer">
+<div id="card">
+<p>Hi <span style="font-weight: bold">{{ user.username }}</span>!</p>
+<p><a href="{% url 'password_change' %}">Click here to change your password</a></p>
+Or navigate to the library:<br>
+<a href="{% url 'books_list' %}">View the list of books</a><br> <!-- New line for books_list.html -->
+<a href="{% url 'add_book' %}">Add a Book</a><br> <!-- New line for book_form.html -->
+<a href="{% url 'members_list' %}">View the list of Members</a><br> <!-- New line for members_list.html -->
+<a href="{% url 'add_member' %}">Add a Member</a><br><br> <!-- New line for members_form.html -->
 <form action="{% url 'logout' %}" method="post">
   {% csrf_token %}
   <button type="submit">Log Out</button>
 </form>
+</div>
+</div>
 {% else %}
 <p>You are not logged in</p>
 <p><a href="{% url 'password_reset' %}">Password Reset</a></p>
