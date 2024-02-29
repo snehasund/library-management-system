@@ -8,15 +8,15 @@
 <div id="outer">
 <div id="card">
 <p>Hi <span style="font-weight: bold">{{ user.username }}</span>!</p>
-<p><a href="{% url 'password_change' %}">Click here to change your password</a></p>
-Or navigate to the library:<br>
+Navigate to the library:<br>
 <a href="{% url 'books_list' %}">View the list of books</a><br> <!-- New line for books_list.html -->
 <a href="{% url 'add_book' %}">Add a Book</a><br> <!-- New line for book_form.html -->
 <a href="{% url 'members_list' %}">View the list of Members</a><br> <!-- New line for members_list.html -->
-<a href="{% url 'add_member' %}">Add a Member</a><br><br> <!-- New line for members_form.html -->
-<form action="{% url 'logout' %}" method="post">
+<a href="{% url 'add_member' %}">Add a Member</a> <!-- New line for members_form.html -->
+<form action="{% url 'logout' %}" method="post" id="logout_form">
   {% csrf_token %}
-  <button type="submit">Log Out</button>
+  <a href="{% url 'password_change' %}" id="pw">Click here to change your password</a><br>
+  <button type="submit" id="logout_button">Log Out</button>
 </form>
 </div>
 </div>
