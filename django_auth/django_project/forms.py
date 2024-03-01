@@ -13,6 +13,7 @@ class BookForm(forms.ModelForm):
         model = Book
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'book title'}),
+            'author': forms.TextInput(attrs={'placeholder': 'author name'}),
             'isbn': forms.TextInput(attrs={'placeholder': 'ISBN number'}),
         }
         fields = '__all__'  # Specify the fields you want to include in the form
