@@ -92,7 +92,7 @@
     <h1>Members List</h1>
     <ul>
     {% for member in members %}
-        <li>{{ member.name }} - {{ member.email }}</li>
+        <li>{{ member.name }} - {{ member.email }} - {{ member.favorite_genre }}</li>
     {% endfor %}
     </ul>
 </body>
