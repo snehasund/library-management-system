@@ -1,4 +1,5 @@
 <!-- templates/library/members_list.html -->
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +93,15 @@
     <h1>Members List</h1>
     <ul>
     {% for member in members %}
-        <li>{{ member.name }} - {{ member.email }} - {{ member.favorite_genre }}</li>
+        <li>
+            {{ member.name }} - {{ member.email }} - {{ member.favorite_genre }}
+            {% if member.profile_picture %}
+                <img src="{{ member.profile_picture.url }}" alt="{{ member.name }}'s Profile Picture">
+            {% else %}
+                <!-- Placeholder image if profile picture is not available -->
+                <img src="{% static '/profile_pictures/placeholder_image.jpeg' %}" alt="Placeholder">
+            {% endif %}
+        </li>
     {% endfor %}
     </ul>
 </body>
