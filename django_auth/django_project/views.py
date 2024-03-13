@@ -68,11 +68,10 @@ def members_list(request):
 
 def add_member(request):
     if request.method == 'POST':
-        form = MemberForm(request.POST)
+        form = MemberForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            # Optionally, you can redirect to a different URL after saving the form
-            return redirect('members_list')  # Redirect to the members list page
+            return redirect('members_list')  # Redirect to members list page after successful form submission
     else:
         form = MemberForm()
-    return render(request, 'library/member_form.html', {'form': form})
+    return render(request, 'library/add_member.html', {'form': form})

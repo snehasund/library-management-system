@@ -25,13 +25,9 @@ class BookForm(forms.ModelForm):
         if len(title) < 5:  # Just an example validation
             raise forms.ValidationError("Title should be at least 5 characters long.")
         return title
+    
 class MemberForm(forms.ModelForm):
     class Meta:
         model = Member
-        widgets = {
-            'name': forms.TextInput(attrs={'placeholder': 'name'}),
-            'email': forms.TextInput(attrs={'placeholder': 'email'}),
-            'favorite_genre': forms.TextInput(attrs={'placeholder': 'favorite genre'}),
-        }
-        fields = '__all__'  # Specify the fields you want to include in the form
+        fields = ['name', 'email', 'favorite_genre', 'profile_picture']
     

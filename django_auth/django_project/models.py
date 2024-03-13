@@ -17,7 +17,9 @@ class Book(models.Model):
     author = models.CharField(max_length=250)
     isbn = models.CharField(max_length=13)
     
+
 class Member(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    favorite_genre = models.CharField(max_length=400)
+    favorite_genre = models.CharField(max_length=100)
+    profile_picture = models.ImageField(upload_to='profile_pictures/')
