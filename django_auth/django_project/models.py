@@ -14,7 +14,7 @@ class Borrow(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
-    author = models.ForeignKey('Author', on_delete=models.CASCADE)
+    author = models.CharField(max_length=250)
     isbn = models.CharField(max_length=13)
     
 class Member(models.Model):

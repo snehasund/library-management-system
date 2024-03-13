@@ -45,11 +45,7 @@ def author_delete(request, pk):
 def books_list_view(request):
     # Here you can include any logic or data retrieval you need
     # For example, if you want to pass some books data to the template
-    books = [
-        {'title': 'Book 1', 'author': 'Author 1'},
-        {'title': 'Book 2', 'author': 'Author 2'},
-        # Add more book data as needed
-    ]
+    books = Book.objects.all()
     context = {
         'books': books,  # Pass the books data to the template
     }
