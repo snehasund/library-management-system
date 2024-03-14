@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
-from django_project.models import Borrow, Book, Member
+from django_project.models import Borrow, Book, Member, Favorite
 from django_project.forms import BookForm, MemberForm
 
 def author_list(request):
@@ -75,3 +76,18 @@ def add_member(request):
     else:
         form = MemberForm()
     return render(request, 'library/add_member.html', {'form': form})
+
+@login_required
+def favorite_book(request, book_id):
+    book = Book.objects.get(pk=book_id)
+    user = request.user
+    favorite, created = Favorite.objects.get_or_create(user=user, book=book)
+    if not created:
+        favorite.delete()
+    return redirect('library_page')
+
+@login_required
+def library_page(request):
+    user = request.user
+    favorites = Favorite.objects.filter(user=user)
+    return render(request, 'library_page.html', {'favorites': favorites})
