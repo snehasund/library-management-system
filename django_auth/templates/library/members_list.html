@@ -95,7 +95,6 @@
     {% for member in members %}
         <li>
             {{ member.name }} - {{ member.email }} - {{ member.favorite_genre }}
-            <img src="{{ member.profile_picture.url }}" alt="Image">
         </li>
     {% endfor %}
     </ul>

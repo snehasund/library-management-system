@@ -17,7 +17,6 @@ class BookForm(forms.ModelForm):
             'author': forms.TextInput(attrs={'placeholder': 'author'}),
             'genre': forms.TextInput(attrs={'placeholder': 'genre'}),
             'isbn': forms.TextInput(attrs={'placeholder': 'ISBN number'}),
-            
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
