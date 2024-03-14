@@ -79,14 +79,7 @@ def add_member(request):
     return render(request, 'library/add_member.html', {'form': form})
 
 
-@login_required
-def favorite_book(request, book_id):
-    book = get_object_or_404(Book, pk=book_id)
-    user = request.user
-    favorite, created = Favorite.objects.get_or_create(user=user, book=book)
-    if not created:
-        favorite.delete()
-    return redirect('library_page', book_id=book_id)
+
 
 @login_required
 def favorites(request):
@@ -99,4 +92,16 @@ def favorites(request):
 def library_page(request):
     user = request.user
     favorites = Favorite.objects.filter(user=user)
-    return render(request, 'library_page.html', {'favorites': favorites})
+    return render(request, 'library/library_page.html', {'favorites': favorites})
+
+@login_required
+def favorite_book(request, book_id):
+    book = get_object_or_404(Book, pk=book_id)
+    user = request.user
+    favorite, created = Favorite.objects.get_or_create(user=user, book=book)
+    if not created:
+        favorite.delete()
+        status = 'unfavorited'
+    else:
+        status = 'favorited'
+    return JsonResponse({'status': status})
