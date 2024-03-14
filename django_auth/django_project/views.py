@@ -70,7 +70,6 @@ def add_member(request):
     if request.method == 'POST':
         form = MemberForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
             return redirect('members_list')  # Redirect to members list page after successful form submission
     else:
         form = MemberForm()
