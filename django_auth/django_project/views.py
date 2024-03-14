@@ -4,7 +4,7 @@ from django.http import JsonResponse
 
 # Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
-from django_project.models import Borrow, Book, Member
+from django_project.models import Borrow, Book, Member, Favorite
 from django_project.forms import BookForm, MemberForm
 
 def author_list(request):
@@ -81,20 +81,19 @@ def add_member(request):
 
 @login_required
 def favorite_book(request, book_id):
-    # Get the book object
     book = get_object_or_404(Book, pk=book_id)
-    # Get the current user
     user = request.user
-    # Check if the book is already favorited by the user
-    is_favorited = Favorite.objects.filter(user=user, book=book).exists()
-    if is_favorited:
-        # If the book is already favorited, unfavorite it
-        Favorite.objects.filter(user=user, book=book).delete()
-    else:
-        # If the book is not favorited, favorite it
-        Favorite.objects.create(user=user, book=book)
-    # Redirect to the library page
-    return redirect('books_list')
+    favorite, created = Favorite.objects.get_or_create(user=user, book=book)
+    if not created:
+        favorite.delete()
+    return redirect('library_page', book_id=book_id)
+
+@login_required
+def favorites(request):
+    user = request.user
+    favorite_books = user.favorite_set.all()  # Assuming 'Favorite' model has a related_name of 'favorite'
+    return render(request, 'favorites.html', {'favorite_books': favorite_books})
+
 
 @login_required
 def library_page(request):
