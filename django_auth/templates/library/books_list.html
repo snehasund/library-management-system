@@ -76,14 +76,27 @@
             border: 1px solid gray;
             box-shadow: 7px 7px 9px lightgray;
             border-radius: 10px;
+            width: 400px;
             padding: 30px 50px;
             margin-top: 60px;
             background-color: rgb(245, 245, 255);
+            display: flex;
         }
         body{
             font-size: 26px;
             font-family: "DM Sans";
             margin: 0;
+        }
+        #subheading{
+            color: darkgray;
+            font-size: 17px;
+        }
+        img{
+            margin-right: 10px
+        }
+        #author{
+            font-style:italic;
+            font-size: 22px;
         }
     </style>
 </head>
@@ -115,8 +128,10 @@
         });
     </script>
     <ul>
+
     {% for book in books %}
-        <li>{{ book.title }} by {{ book.author }} (ISBN: {{ book.isbn }})</li>
+        <div id="card"><img src='https://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg'/><div>📚 {{ book.title }}<br><span id="author">{{ book.author }}</span> <br><span id="subheading">(ISBN: {{ book.isbn }})</span></div></div>
+        <button class="favorite-button" data-book-id="{{ book.id }}">Favorite</button>
     {% endfor %}
     </ul>
 </body>
