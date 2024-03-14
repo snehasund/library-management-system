@@ -129,7 +129,7 @@
     </script>
     <ul>
     {% for book in books %}
-        <div id="card"><img src='https://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg'/><div>📚 {{ book.title }}<br><span id="author">{{ book.author }}</span> <br><span id="subheading">(ISBN: {{ book.isbn }})</span></div></div>
+        <div id="card"><img src='https://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg'/><div>📚 {{ book.title }}<br><span id="author">{{ book.author }}</span> <br><span id="subheading">(ISBN: {{ book.isbn }})</span><br><button class="favorite-button"><strong>♡</strong></button></div></div>
     {% endfor %}
     </ul>
 </body>
