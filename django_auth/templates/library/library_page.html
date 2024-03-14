@@ -1,0 +1,17 @@
+<!-- library_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Page</title>
+</head>
+<body>
+    <h1>Your Library</h1>
+    <ul>
+        {% for favorite in favorites %}
+        <li>{{ favorite.book.title }} by {{ favorite.book.author }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

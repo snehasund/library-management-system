@@ -1,6 +1,7 @@
 # models.py
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Author(models.Model):
     first_name = models.CharField(max_length=250)
@@ -18,6 +19,10 @@ class Book(models.Model):
     genre = models.CharField(max_length=250)
     isbn = models.CharField(max_length=13)
     
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    date_favorited = models.DateTimeField(auto_now_add=True)
 
 class Member(models.Model):
     name = models.CharField(max_length=100)
