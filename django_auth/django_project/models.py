@@ -18,11 +18,8 @@ class Book(models.Model):
     author = models.CharField(max_length=250)
     genre = models.CharField(max_length=250)
     isbn = models.CharField(max_length=13)
+    favorite = models.BooleanField(default=False)  # New field for favorites
     
-class Favorite(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    date_favorited = models.DateTimeField(auto_now_add=True)
 
 class Member(models.Model):
     name = models.CharField(max_length=100)
