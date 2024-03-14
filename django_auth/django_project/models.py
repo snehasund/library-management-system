@@ -15,6 +15,7 @@ class Borrow(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=250)
+    genre = models.CharField(max_length=250)
     isbn = models.CharField(max_length=13)
     
 
@@ -22,4 +23,4 @@ class Member(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     favorite_genre = models.CharField(max_length=100)
-    profile_picture = models.ImageField(upload_to='profile_pictures/')
+    profile_picture = models.ImageField(upload_to='templates/library/media/profile_pictures/')

@@ -11,9 +11,11 @@ class AuthorForm(forms.ModelForm):
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'author', 'isbn']
+        fields = ['title', 'author', 'genre', 'isbn']
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'book title'}),
+            'author': forms.TextInput(attrs={'placeholder': 'author'}),
+            'genre': forms.TextInput(attrs={'placeholder': 'genre'}),
             'isbn': forms.TextInput(attrs={'placeholder': 'ISBN number'}),
         }
     def __init__(self, *args, **kwargs):
