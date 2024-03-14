@@ -103,6 +103,30 @@
 <body>
     <header id="banner"><div id="banner-container"><h1 id="heading" class="top">welcome to sneb's bookclub</h1><h4 id="heading">👑👑👑👑</h4><h3 id="heading">invite only</h3></div></header>
     <h1>Books List</h1>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".favorite-button").click(function() {
+                var book_id = $(this).data('book-id');
+                var csrf_token = "{{ csrf_token }}";
+                $.ajax({
+                    url: "/favorite/" + book_id + "/",
+                    type: "POST",
+                    data: {
+                        csrfmiddlewaretoken: csrf_token,
+                        book_id: book_id
+                    },
+                    success: function(data) {
+                        if (data.status == 'favorited') {
+                            $(this).text('Unfavorite');
+                        } else {
+                            $(this).text('Favorite');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <ul>
     {% for book in books %}
         <div id="card"><img src='https://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg'/><div>📚 {{ book.title }}<br><span id="author">{{ book.author }}</span> <br><span id="subheading">(ISBN: {{ book.isbn }})</span></div></div>

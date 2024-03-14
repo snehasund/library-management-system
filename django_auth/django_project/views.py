@@ -84,7 +84,10 @@ def favorite_book(request, book_id):
     favorite, created = Favorite.objects.get_or_create(user=user, book=book)
     if not created:
         favorite.delete()
-    return redirect('library_page')
+        status = 'unfavorited'
+    else:
+        status = 'favorited'
+    return JsonResponse({'status': status})
 
 @login_required
 def library_page(request):
