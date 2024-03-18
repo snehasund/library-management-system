@@ -98,16 +98,23 @@
             font-style:italic;
             font-size: 22px;
         }
+        .favorite-red {
+            background-color: red;
+            color: white; /* Change text color to contrast with red background */
+        }        
     </style>
 </head>
 <body>
-    <header id="banner"><div id="banner-container"><h1 id="heading" class="top">welcome to sneb's bookclub</h1><h4 id="heading">👑👑👑👑</h4><h3 id="heading">invite only</h3></div></header>
+    <!-- Header content -->
     <h1>Books List</h1>
+    <a href="{% url 'library_page' %}">Go to Library Page</a>
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $(".favorite-button").click(function() {
-                var book_id = $(this).data('book-id');
+                var button = $(this); // Store the button element
+                var book_id = button.data('book-id');
                 var csrf_token = "{{ csrf_token }}";
                 $.ajax({
                     url: "/favorite/" + book_id + "/",
@@ -118,9 +125,11 @@
                     },
                     success: function(data) {
                         if (data.status == 'favorited') {
-                            $(this).text('Unfavorite');
+                            button.text('Unfavorite');
+                            button.addClass('favorite-red'); // Add the class to change color to red
                         } else {
-                            $(this).text('Favorite');
+                            button.text('Favorite');
+                            button.removeClass('favorite-red'); // Remove the class
                         }
                     }
                 });

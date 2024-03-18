@@ -2,10 +2,6 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-
-class Author(models.Model):
-    first_name = models.CharField(max_length=250)
-    last_name = models.CharField(max_length = 250)
     
 class Borrow(models.Model):
     book = models.ForeignKey('Book', on_delete=models.CASCADE)
