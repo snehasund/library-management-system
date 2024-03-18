@@ -7,7 +7,7 @@
     <title>Library Page</title>
 </head>
 <body>
-    <h1>Your Library</h1>
+    <h1>{{user.username}} 's Library</h1>
     <ul>
         {% for favorite in favorites %}
         <li>{{ favorite.book.title }} by {{ favorite.book.author }}</li>
