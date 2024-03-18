@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>{{user.username}} 's Library</h1>
+    <h2>friends</h2>
     <ul>
         {% for favorite in favorites %}
         <li>{{ favorite.book.title }} by {{ favorite.book.author }}</li>
