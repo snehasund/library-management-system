@@ -26,5 +26,5 @@ class BookForm(forms.ModelForm):
 class MemberForm(forms.ModelForm):
     class Meta:
         model = Member
-        fields = ['name', 'email', 'favorite_genre', 'profile_picture']
+        fields = ['name', 'email', 'favorite_genre']
     

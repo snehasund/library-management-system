@@ -25,5 +25,3 @@ class Member(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     favorite_genre = models.CharField(max_length=100)
-    profile_picture = models.ImageField(upload_to='templates/library/media/profile_pictures/')
-
