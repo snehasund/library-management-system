@@ -9,8 +9,6 @@ class Borrow(models.Model):
     borrow_date = models.DateField(default=timezone.now)
     return_date = models.DateField(null=True, blank=True)
 
-
-    
 class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=250)
