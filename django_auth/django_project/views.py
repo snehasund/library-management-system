@@ -7,7 +7,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django_project.models import Borrow, Book, Member, Favorite
 from django_project.forms import BookForm, MemberForm
 
-# Similarly, you can define views for books and members
+from django.contrib.auth.decorators import user_passes_test
+
+def user_is_admin(user):
+    return user.is_superuser  # Assuming only superusers have admin privileges
+
+# you can define views for books and members
 def books_list_view(request):
     # Here you can include any logic or data retrieval you need
     # For example, if you want to pass some books data to the template
@@ -67,6 +72,7 @@ def favorite_book(request, book_id):
         status = 'favorited'
     return JsonResponse({'status': status})
 
+@user_passes_test(user_is_admin)
 def edit_book(request, book_id):
     book = Book.objects.get(id=book_id)
     if request.method == 'POST':
