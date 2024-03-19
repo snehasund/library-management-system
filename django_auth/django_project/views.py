@@ -66,3 +66,14 @@ def favorite_book(request, book_id):
     else:
         status = 'favorited'
     return JsonResponse({'status': status})
+
+def edit_book(request, book_id):
+    book = Book.objects.get(id=book_id)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('books_list')  # Redirect to the books list page
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'library/edit_form.html', {'form': form})
