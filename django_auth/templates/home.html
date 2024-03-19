@@ -11,6 +11,7 @@
 Navigate to the library:<br>
 <a href="{% url 'books_list' %}">View the list of books</a><br> <!-- New line for books_list.html -->
 <a href="{% url 'add_book' %}">Add a Book</a><br> <!-- New line for book_form.html -->
+<a href="{% url 'library_page' %}">View your liked books</a><br>
 <a href="{% url 'members_list' %}">View the list of Members</a><br> <!-- New line for members_list.html -->
 <a href="{% url 'add_member' %}">Add a Member</a> <!-- New line for members_form.html -->
 <form action="{% url 'logout' %}" method="post" id="logout_form">
