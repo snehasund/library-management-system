@@ -1,15 +1,11 @@
-<!-- templates/library/members_list.html -->
-{% load static %}
+<!-- edit_member.html -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Members List</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Edit Member</title>
+    <!-- Your CSS styles here -->
     <style>
         #banner{
             background-color: rgb(207, 207, 241);
@@ -90,26 +86,17 @@
             text-decoration: none;
             color: black;
         }
+        h1, form{
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
-    <header id="banner"><div id="banner-container"><h1 id="heading" class="top"><a href="{% url 'home' %}">welcome to sneb's bookclub</a></h1><h4 id="heading">👑👑👑👑</h4><h3 id="heading">invite only</h3></div></header>
-    <h1>Members List</h1>
-    <ul>
-    {% for member in members %}
-        <li>
-            {{ member.name }} - {{ member.email }} - {{ member.favorite_genre }}
-            <button class="edit-button" onclick="redirectToEditMember('{{ member.id }}')">✎</button>
-        </li>
-    {% endfor %}
-    </ul>    
-
-    <script>
-        function redirectToEditMember(memberId) {
-            window.location.href = "/edit_member/" + memberId;
-        }
-    </script>
-
-
+    <h1>Edit Member</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ member_form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
 </body>
 </html>

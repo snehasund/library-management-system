@@ -33,6 +33,6 @@ urlpatterns = [
     path('rating/<int:book_id>/', views.get_book_rating, name='get_book_rating'), 
     path('library/', views.library_page, name='library_page'),     
     path('edit-form/<int:book_id>/', views.edit_book, name='edit_book'),
-    path('add-friend/<int:member_id>/', views.add_friend, name='add_friend'),
+    path('edit_member/<int:member_id>/', views.edit_member, name='edit_member'),
 
 ]
