@@ -4,7 +4,7 @@ from django.http import JsonResponse
 
 # Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
-from django_project.models import Borrow, Book, Member, Favorite, Friend
+from django_project.models import Borrow, Book, Member, Favorite
 from django_project.forms import BookForm, MemberForm
 
 from django.contrib.auth.decorators import user_passes_test
@@ -58,7 +58,8 @@ def favorites(request):
 def library_page(request):
     user = request.user
     favorites = Favorite.objects.filter(user=user)
-    return render(request, 'library/library_page.html', {'favorites': favorites})
+    friend_name = request.GET.get('friend_name')
+    return render(request, 'library/library_page.html', {'favorites': favorites}, {'friend_name':friend_name})
 
 @login_required
 def favorite_book(request, book_id):
@@ -83,29 +84,14 @@ def edit_book(request, book_id):
     else:
         form = BookForm(instance=book)
     return render(request, 'library/edit_form.html', {'form': form})
-
-
-@login_required
-def add_friend(request, member_id):
-    friend = get_object_or_404(Member, pk=member_id)
-    user = request.user
-    friend, created = Friend.objects.get_or_create(user=user, friend=friend)
-    if not created:
-        friend.delete()
-        status = 'not-friends'
+  
+def edit_member(request, member_id):
+    member = Member.objects.get(id=member_id)
+    if request.method == 'POST':
+        member_form = MemberForm(request.POST, instance=member)
+        if member_form.is_valid():
+            member_form.save()
+            return redirect('members_list')  # Redirect to the books list page
     else:
-        status = 'friends'
-    return JsonResponse({'status': status})
-
- 
-@login_required
-def friends(request, member_id):
-    friend = get_object_or_404(Member, pk=member_id)
-    user = request.user
-    friend, created = Friend.objects.get_or_create(user=user, friend=friend)
-    if not created:
-        friend.delete()
-        status = 'not-friends'
-    else:
-        status = 'friends'
-    return JsonResponse({'status': status})
+        member_form = MemberForm(instance=member)
+    return render(request, 'library/edit_member.html', {'member_form': member_form})

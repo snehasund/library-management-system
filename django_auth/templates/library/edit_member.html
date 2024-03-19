@@ -1,0 +1,18 @@
+<!-- edit_member.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Member</title>
+    <!-- Your CSS styles here -->
+</head>
+<body>
+    <h1>Edit Member</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ member_form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

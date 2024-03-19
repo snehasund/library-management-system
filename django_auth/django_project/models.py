@@ -26,6 +26,3 @@ class Member(models.Model):
     favorite_genre = models.CharField(max_length=100)
     profile_picture = models.ImageField(upload_to='templates/library/media/profile_pictures/')
 
-class Friend(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friends')
-    friend = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_friends')

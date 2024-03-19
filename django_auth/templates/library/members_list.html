@@ -99,41 +99,17 @@
     {% for member in members %}
         <li>
             {{ member.name }} - {{ member.email }} - {{ member.favorite_genre }}
-            <button class="add-friend-button" data-member-id="{{ member.id }}">Add Friend</button>
+            <button class="edit-button" onclick="redirectToEditMember('{{ member.id }}')">✎</button>
         </li>
     {% endfor %}
-    </ul>
+    </ul>    
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(".add-friend-button").click(function() {
-                var button = $(this);
-                var member_id = button.data('member-id');
-                var csrf_token = "{{ csrf_token }}";
-                // Send a request to add friend
-                $.ajax({
-                    url: "/add-friend/" + member_id + "/",
-                    type: "POST",
-                    data: {
-                        csrfmiddlewaretoken: csrf_token,
-                        member_id: member_id
-                    },
-                    success: function(data) {
-                        // Handle success response
-                        // For example, show a success message
-                        alert("Friend added successfully!");
-                    },
-                    error: function(xhr, errmsg, err) {
-                        // Handle error response
-                        // For example, show an error message
-                        alert("Error: Unable to add friend!");
-                    }
-                });
-            });
-        });
+    <script>
+        function redirectToEditMember(memberId) {
+            window.location.href = "/edit_member/" + memberId;
+        }
     </script>
-    
+
+
 </body>
 </html>
