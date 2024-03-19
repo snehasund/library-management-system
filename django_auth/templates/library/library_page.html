@@ -156,7 +156,7 @@
                 });
             });
             $(".rate-button").click(function() {
-                var button = $(this); // Store the button element
+                var button = $(this);
                 var book_id = button.data('book-id');
                 var rating = button.data('rating');
                 var csrf_token = "{{ csrf_token }}";
