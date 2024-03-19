@@ -133,6 +133,29 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            $('.favorite-button').map((i, book)=>{
+                console.log(book);
+                b = $(book);
+                book_id = b.data("book-id")
+                var csrf_token = "{{ csrf_token }}";
+                $.ajax({
+                    url: "/rating/" + book_id + "/",
+                    type: "GET",
+                    data: {
+                        csrfmiddlewaretoken: csrf_token,
+                        book_id: book_id
+                    },
+                    success: function(data) {
+                        console.log(data["rating"])
+                        for(let i = 1; i<6; i++){
+                            $(`.rate-${String(i)}`).map((f, button)=>{
+                                if($(button).data('book-id')==book_id) $(button).text((Number(i)<=Number(data["rating"])) ? "★" : "☆")
+                            })
+                        }
+                    }
+                });
+            });
+            
             $(".favorite-button").click(function() {
                 var button = $(this); // Store the button element
                 var book_id = button.data('book-id');
@@ -170,7 +193,9 @@
                     },
                     success: function(data) {
                         for(let i = 1; i<6; i++){
-                            $(`.rate-${String(i)}`).text((Number(i)<=Number(rating)) ? "★" : "☆")
+                            $(`.rate-${String(i)}`).map((f, button)=>{
+                                if($(button).data('book-id')==book_id) $(button).text((Number(i)<=Number(rating)) ? "★" : "☆")
+                            })
                         }
                     }
                 });
