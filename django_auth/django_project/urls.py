@@ -29,6 +29,7 @@ urlpatterns = [
     path('members/', views.members_list, name='members_list'),
     path('add_member/', views.add_member, name='add_member'),
     path('favorite/<int:book_id>/', views.favorite_book, name='favorite_book'),  # URL pattern for favoriting/unfavoriting
+    path('rate/<int:book_id>/', views.rate_book, name='rate_book'),  
     path('library/', views.library_page, name='library_page'),     
     path('edit-form/<int:book_id>/', views.edit_book, name='edit_book'),
 ]

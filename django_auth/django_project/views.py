@@ -72,6 +72,15 @@ def favorite_book(request, book_id):
         status = 'favorited'
     return JsonResponse({'status': status})
 
+@login_required
+def rate_book(request, book_id):
+    book = get_object_or_404(Book, pk=book_id)
+    user = request.user
+    favorite, created = Favorite.objects.get_or_create(user=user, book=book)
+    favorite.rating = request.POST["rating"]
+    print(request.POST["rating"])
+    return JsonResponse({'status': request.POST["rating"]})
+
 @user_passes_test(user_is_admin)
 def edit_book(request, book_id):
     book = Book.objects.get(id=book_id)
