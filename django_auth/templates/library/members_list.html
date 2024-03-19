@@ -86,10 +86,14 @@
             font-family: "DM Sans";
             margin: 0;
         }
+        h1>a{
+            text-decoration: none;
+            color: black;
+        }
     </style>
 </head>
 <body>
-    <header id="banner"><div id="banner-container"><h1 id="heading" class="top">welcome to sneb's bookclub</h1><h4 id="heading">👑👑👑👑</h4><h3 id="heading">invite only</h3></div></header>
+    <header id="banner"><div id="banner-container"><h1 id="heading" class="top"><a href="{% url 'home' %}">welcome to sneb's bookclub</a></h1><h4 id="heading">👑👑👑👑</h4><h3 id="heading">invite only</h3></div></header>
     <h1>Members List</h1>
     <ul>
     {% for member in members %}

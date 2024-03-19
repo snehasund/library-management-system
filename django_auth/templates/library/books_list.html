@@ -114,10 +114,20 @@
         #button-container{
             display: flex;
         }  
+        h1>a{
+            text-decoration: none;
+            color: black;
+        }
     </style>
 </head>
 <body>
-    <!-- Header content -->
+    <header id="banner">
+        <div id="banner-container">
+            <h1 id="heading" class="top"><a href="{% url 'home' %}">welcome to sneb's bookclub</a></h1>
+            <h4 id="heading">👑👑👑👑</h4>
+            <h3 id="heading">invite only</h3>
+        </div>
+    </header>
     <h1>Books List</h1>
     <a href="{% url 'library_page' %}">view your liked books!</a>
     <!-- jQuery -->
@@ -160,7 +170,7 @@
                 <div>📚 {{ book.title }}<br><span id="author">{{ book.author }}</span> <br><span id="subheading">(ISBN: {{ book.isbn }})</span><br>
                     <div id="button-container">
                     <button class="favorite-button" data-book-id="{{ book.id }}">♡</button>
-                    <button class="edit-button" onclick="redirectToEditForm({{ book.id }})">✎</button> </div> <!-- Add onclick event for redirection -->
+                    <button class="edit-button" onclick="redirectToEditForm('{{ book.id }}')">✎</button> </div> <!-- Add onclick event for redirection -->
                 </div>
                 
             </div>
