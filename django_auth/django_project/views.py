@@ -53,13 +53,12 @@ def favorites(request):
     favorite_books = user.favorite_set.all()  # Assuming 'Favorite' model has a related_name of 'favorite'
     return render(request, 'favorites.html', {'favorite_books': favorite_books})
 
-
 @login_required
 def library_page(request):
     user = request.user
     favorites = Favorite.objects.filter(user=user)
     friend_name = request.GET.get('friend_name')
-    return render(request, 'library/library_page.html', {'favorites': favorites}, {'friend_name':friend_name})
+    return render(request, 'library/library_page.html', {'favorites': favorites, 'friend_name': friend_name})
 
 @login_required
 def favorite_book(request, book_id):
