@@ -148,6 +148,30 @@
                     }
                 });
             });
+            $(".add-friend-button").click(function() {
+                var button = $(this);
+                var member_id = button.data('member-id');
+                var csrf_token = "{{ csrf_token }}";
+                // Send a request to add friend
+                $.ajax({
+                    url: "/add-friend/" + member_id + "/",
+                    type: "POST",
+                    data: {
+                        csrfmiddlewaretoken: csrf_token,
+                        member_id: member_id
+                    },
+                    success: function(data) {
+                        // Handle success response
+                        // For example, show a success message
+                        alert("Friend added successfully!");
+                    },
+                    error: function(xhr, errmsg, err) {
+                        // Handle error response
+                        // For example, show an error message
+                        alert("Error: Unable to add friend!");
+                    }
+                });
+            });            
         });
 
         // Function to redirect to the edit form page

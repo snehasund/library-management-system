@@ -4,7 +4,7 @@ from django.http import JsonResponse
 
 # Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
-from django_project.models import Borrow, Book, Member, Favorite
+from django_project.models import Borrow, Book, Member, Favorite, Friend
 from django_project.forms import BookForm, MemberForm
 
 from django.contrib.auth.decorators import user_passes_test
@@ -83,3 +83,29 @@ def edit_book(request, book_id):
     else:
         form = BookForm(instance=book)
     return render(request, 'library/edit_form.html', {'form': form})
+
+
+@login_required
+def add_friend(request, member_id):
+    friend = get_object_or_404(Member, pk=member_id)
+    user = request.user
+    friend, created = Friend.objects.get_or_create(user=user, friend=friend)
+    if not created:
+        friend.delete()
+        status = 'not-friends'
+    else:
+        status = 'friends'
+    return JsonResponse({'status': status})
+
+ 
+@login_required
+def friends(request, member_id):
+    friend = get_object_or_404(Member, pk=member_id)
+    user = request.user
+    friend, created = Friend.objects.get_or_create(user=user, friend=friend)
+    if not created:
+        friend.delete()
+        status = 'not-friends'
+    else:
+        status = 'friends'
+    return JsonResponse({'status': status})
