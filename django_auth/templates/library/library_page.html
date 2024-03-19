@@ -72,7 +72,7 @@
             flex-direction: column;
             height: 100%;
         }
-        #card{
+        .card{
             border: 1px solid gray;
             box-shadow: 7px 7px 9px lightgray;
             border-radius: 10px;
@@ -101,7 +101,7 @@
             font-size: 22px;
         }
         .favorite-red {
-            background-color: red;
+            background-color: rgb(253, 116, 116);
             color: white; /* Change text color to contrast with red background */
         }
         .edit-button{
@@ -134,7 +134,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('.favorite-button').map((i, book)=>{
-                console.log(book);
                 b = $(book);
                 book_id = b.data("book-id")
                 var csrf_token = "{{ csrf_token }}";
@@ -168,13 +167,11 @@
                         book_id: book_id
                     },
                     success: function(data) {
-                        if (data.status == 'favorited') {
-                            button.text('♡');
-                            button.addClass('favorite-red'); // Add the class to change color to red
-                        } else {
-                            button.text('♡');
-                            button.removeClass('favorite-red'); // Remove the class
-                        }
+                        $('.card').map((ind, c)=>{
+                            if($(c).data('book-id')==book_id){
+                                $(c).remove();
+                            }
+                        })
                     }
                 });
             });
@@ -241,11 +238,11 @@
     <h1>{{user.username}} 's Library</h1>
     <h2>my favorite books:</h2>
     {% for favorite in favorites %}
-        <div id="card">
+        <div class="card" data-book-id="{{ favorite.book.id }}">
             <img src='https://covers.openlibrary.org/b/isbn/{{favorite.book.isbn}}-M.jpg'/>
             <div>📚 {{ favorite.book.title }}<br><span id="author">{{ favorite.book.author }}</span> <br><span id="subheading">(ISBN: {{ favorite.book.isbn }})</span><br>
                 <div id="button-container">
-                <button class="favorite-button button" data-book-id="{{ favorite.book.id }}">♡</button>
+                <button class="favorite-button button favorite-red" data-book-id="{{ favorite.book.id }}">♡</button>
                 <button class="edit-button button" onclick="redirectToEditForm('{{ favorite.book.id }}')">✎</button> </div> <!-- Add onclick event for redirection -->
                 <button data-book-id="{{ favorite.book.id }}" data-rating=1 class="rate-button rate-1">☆</button>
                 <button data-book-id="{{ favorite.book.id }}" data-rating=2 class="rate-button rate-2">☆</button>
