@@ -19,6 +19,7 @@ class Book(models.Model):
 class Favorite(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='favorites')  # Use related_name)
+    rating = models.DecimalField(default=0,decimal_places=1,max_digits=2)
 
 class Member(models.Model):
     name = models.CharField(max_length=100)

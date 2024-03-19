@@ -52,7 +52,7 @@
             border-radius: 4px;
             border-style:solid;
         }
-        button{
+        .button{
             padding: 8px 16px;
             border-style:solid;
             border: 0.5px solid;
@@ -62,7 +62,7 @@
             background-color: rgb(180, 180, 236);
             color: black;
         }
-        button:hover{
+        .button:hover{
             background-color: rgb(207, 207, 241)
         }
         #outer{
@@ -120,6 +120,13 @@
             text-decoration: none;
             color: black;
         }
+        .rate-button{
+            border: none;
+            background: none;
+            padding: 0;
+            color: rgb(225, 222, 8);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -144,6 +151,26 @@
                         } else {
                             button.text('♡');
                             button.removeClass('favorite-red'); // Remove the class
+                        }
+                    }
+                });
+            });
+            $(".rate-button").click(function() {
+                var button = $(this);
+                var book_id = button.data('book-id');
+                var rating = button.data('rating');
+                var csrf_token = "{{ csrf_token }}";
+                $.ajax({
+                    url: "/rate/" + book_id + "/",
+                    type: "POST",
+                    data: {
+                        csrfmiddlewaretoken: csrf_token,
+                        book_id: book_id,
+                        rating: rating
+                    },
+                    success: function(data) {
+                        for(let i = 1; i<6; i++){
+                            $(`.rate-${String(i)}`).text((Number(i)<=Number(rating)) ? "★" : "☆")
                         }
                     }
                 });
@@ -193,8 +220,13 @@
             <img src='https://covers.openlibrary.org/b/isbn/{{favorite.book.isbn}}-M.jpg'/>
             <div>📚 {{ favorite.book.title }}<br><span id="author">{{ favorite.book.author }}</span> <br><span id="subheading">(ISBN: {{ favorite.book.isbn }})</span><br>
                 <div id="button-container">
-                <button class="favorite-button" data-book-id="{{ favorite.book.id }}">♡</button>
-                <button class="edit-button" onclick="redirectToEditForm('{{ favorite.book.id }}')">✎</button> </div> <!-- Add onclick event for redirection -->
+                <button class="favorite-button button" data-book-id="{{ favorite.book.id }}">♡</button>
+                <button class="edit-button button" onclick="redirectToEditForm('{{ favorite.book.id }}')">✎</button> </div> <!-- Add onclick event for redirection -->
+                <button data-book-id="{{ favorite.book.id }}" data-rating=1 class="rate-button rate-1">☆</button>
+                <button data-book-id="{{ favorite.book.id }}" data-rating=2 class="rate-button rate-2">☆</button>
+                <button data-book-id="{{ favorite.book.id }}" data-rating=3 class="rate-button rate-3">☆</button>
+                <button data-book-id="{{ favorite.book.id }}" data-rating=4 class="rate-button rate-4">☆</button>
+                <button data-book-id="{{ favorite.book.id }}" data-rating=5 class="rate-button rate-5">☆</button>
             </div>
         </div>
     {% endfor %}
