@@ -2,15 +2,20 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Books List</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <style>
-        #banner{
+        #banner {
             background-color: rgb(207, 207, 241);
             height: 140px;
             font-family: 'Playfair Display', serif;
@@ -19,42 +24,49 @@
             font-size: 20px;
             font-style: italic;
         }
-        #banner-container{
+
+        #banner-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 100%;
         }
-        #heading{
+
+        #heading {
             margin: 0px;
         }
-        .top{
+
+        .top {
             margin-top: 35px;
         }
-        select{
+
+        select {
             filter: drop-shadow(2px 2px 2px lightgray);
             height: 25px;
             margin-bottom: -5px;
             border-radius: 4px;
-            border-style:solid;
+            border-style: solid;
             border-color: gray;
             border-width: 2px;
         }
-        input::placeholder{
+
+        input::placeholder {
             font-family: "DM Sans";
             font-size: 14px;
         }
-        input{
+
+        input {
             filter: drop-shadow(2px 2px 2px lightgray);
             height: 25px;
             margin-bottom: -5px;
             border-radius: 4px;
-            border-style:solid;
+            border-style: solid;
         }
-        button{
+
+        button {
             padding: 8px 16px;
-            border-style:solid;
+            border-style: solid;
             border: 0.5px solid;
             filter: drop-shadow(2px 2px 3px gray);
             border-radius: 4px;
@@ -62,10 +74,12 @@
             background-color: rgb(180, 180, 236);
             color: black;
         }
-        button:hover{
+
+        button:hover {
             background-color: rgb(207, 207, 241)
         }
-        #outer{
+
+        #outer {
             align-items: center;
             justify-content: center;
             display: flex;
@@ -79,64 +93,79 @@
             justify-content: flex-start;
             align-items: center;
             margin-top: 20px;
-        
         }
-        
-        #card{
+
+        #card {
             border: 1px solid gray;
             box-shadow: 7px 7px 9px lightgray;
             border-radius: 10px;
-            width: 300px; /* Adjust the width as needed */
+            width: 300px;
+            /* Adjust the width as needed */
             padding: 30px 40px;
-            margin: 10px; /* Adjust the margin as needed */
+            margin: 10px;
+            /* Adjust the margin as needed */
             background-color: rgb(245, 245, 255);
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            /* Changed to row */
             align-items: center;
             text-align: center;
             line-spacing: 10px;
         }
-        body{
+
+        body {
             font-size: 26px;
             font-family: "DM Sans";
             margin: 0;
         }
-        #subheading{
+
+        #subheading {
             color: darkgray;
             font-size: 17px;
         }
-        img{
+
+        img {
             margin-right: 10px;
-            max-width: 100%; /* Ensure the image does not exceed the container width */
-            height: auto; /* Maintain aspect ratio */
+            max-width: 100%;
+            /* Ensure the image does not exceed the container width */
+            height: auto;
+            /* Maintain aspect ratio */
         }
-        #author{
-            font-style:italic;
+
+        #author {
+            font-style: italic;
             font-size: 22px;
         }
+
         .favorite-red {
             background-color: rgb(253, 116, 116);
-            color: white; /* Change text color to contrast with red background */
+            color: white;
+            /* Change text color to contrast with red background */
         }
-        .edit-button{
+
+        .edit-button {
             margin-top: 5px;
             font-size: 24px;
-        }    
-        .favorite-button{
+        }
+
+        .favorite-button {
             margin-top: 5px;
             margin-left: 30px;
             margin-right: 7px;
             font-size: 20px;
-        }  
-        #button-container{
+        }
+
+        #button-container {
             display: flex;
-        }  
-        h1>a{
+        }
+
+        h1>a {
             text-decoration: none;
             color: black;
         }
     </style>
 </head>
+
 <body>
     <header id="banner">
         <div id="banner-container">
@@ -147,13 +176,16 @@
     </header>
     <h1 style="text-align: center">Books List</h1>
     <div style="text-align: center;">
-        <a href="{% url 'library_page' %}" style="display: inline-block; padding: 10px 10px; background-color: #9370DB; color: white; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#7a67c2'" onmouseout="this.style.backgroundColor='#9370DB'">View Your Liked Books!</a>
+        <a href="{% url 'library_page' %}"
+            style="display: inline-block; padding: 10px 10px; background-color: #9370DB; color: white; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;"
+            onmouseover="this.style.backgroundColor='#7a67c2'" onmouseout="this.style.backgroundColor='#9370DB'">View
+            Your Liked Books!</a>
     </div>
-        <!-- jQuery -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(".favorite-button").click(function() {
+        $(document).ready(function () {
+            $(".favorite-button").click(function () {
                 var button = $(this); // Store the button element
                 var book_id = button.data('book-id');
                 var csrf_token = "{{ csrf_token }}";
@@ -164,10 +196,11 @@
                         csrfmiddlewaretoken: csrf_token,
                         book_id: book_id
                     },
-                    success: function(data) {
+                    success: function (data) {
                         if (data.status == 'favorited') {
                             button.text('♡');
-                            button.addClass('favorite-red'); // Add the class to change color to red
+                            button.addClass(
+                            'favorite-red'); // Add the class to change color to red
                         } else {
                             button.text('♡');
                             button.removeClass('favorite-red'); // Remove the class
@@ -182,17 +215,20 @@
             window.location.href = "/edit-form/" + bookId + "/";
         }
     </script>
-    <ul>
+    <div class="card-container">
         {% for book in books %}
-            <div id="card">
-                <img src='https://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg'/>
-                <div>📚 {{ book.title }}<br><span id="author">{{ book.author }}</span> <br><span id="subheading">(ISBN: {{ book.isbn }})</span><br>
-                    <div id="button-container">
+        <div id="card">
+            <img src='https://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg' />
+            <div>📚 {{ book.title }}<br><span id="author">{{ book.author }}</span> <br><span id="subheading">(ISBN:
+                    {{ book.isbn }})</span><br>
+                <div id="button-container">
                     <button class="favorite-button" data-book-id="{{ book.id }}">♡</button>
-                    <button class="edit-button" onclick="redirectToEditForm('{{ book.id }}')">✎</button> </div> <!-- Add onclick event for redirection -->
-                </div>
+                    <button class="edit-button" onclick="redirectToEditForm('{{ book.id }}')">✎</button>
+                </div> <!-- Add onclick event for redirection -->
             </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
+
 </html>
