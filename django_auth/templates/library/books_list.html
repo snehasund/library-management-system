@@ -145,9 +145,11 @@
             <h3 id="heading">invite only</h3>
         </div>
     </header>
-    <h1>Books List</h1>
-    <a href="{% url 'library_page' %}">view your liked books!</a>
-    <!-- jQuery -->
+    <h1 style="text-align: center">Books List</h1>
+    <div style="text-align: center;">
+        <a href="{% url 'library_page' %}" style="display: inline-block; padding: 10px 10px; background-color: #9370DB; color: white; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#7a67c2'" onmouseout="this.style.backgroundColor='#9370DB'">View Your Liked Books!</a>
+    </div>
+        <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
