@@ -1,29 +1,95 @@
-<!-- templates/home.html -->
 {% extends "base.html" %}
 
 {% block title %}Home{% endblock %}
 
+{% block styles %}
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f6f7; /* Light pink background */
+    color: #301934; /* Dark purple text */
+  }
+
+  #outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  #card {
+    background-color: #fff; /* White card background */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  button {
+    background-color: #6e2d5f; /* Purple button background */
+    color: #fff; /* White button text */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  button:hover {
+    background-color: #8a4d81; /* Darker purple on hover */
+  }
+
+  .welcome-text {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .info-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .info-text a {
+    font-weight: bold;
+    color: #6e2d5f; /* Purple links */
+    text-decoration: none;
+  }
+
+  .info-text a:hover {
+    color: #8a4d81; /* Darker purple on hover */
+  }
+
+</style>
+{% endblock %}
+
 {% block content %}
 {% if user.is_authenticated %}
 <div id="outer">
-<div id="card">
-<p>Hi <span style="font-weight: bold">{{ user.username }}</span>!</p>
-Navigate to the library:<br>
-<a href="{% url 'books_list' %}">View the list of books</a><br> <!-- New line for books_list.html -->
-<a href="{% url 'add_book' %}">Add a Book</a><br> <!-- New line for book_form.html -->
-<a href="{% url 'library_page' %}">View your liked books</a><br>
-<a href="{% url 'members_list' %}">View the list of Members</a><br> <!-- New line for members_list.html -->
-<a href="{% url 'add_member' %}">Add a Member</a> <!-- New line for members_form.html -->
-<form action="{% url 'logout' %}" method="post" id="logout_form">
-  {% csrf_token %}
-  <a href="{% url 'password_change' %}" id="pw">Click here to change your password</a><br>
-  <button type="submit" id="logout_button">Log Out</button>
-</form>
-</div>
+  <div id="card">
+    <p class="welcome-text">Hi <span style="font-weight: bold">{{ user.username }}</span>, welcome to our book community!</p>
+    <div class="info-text">
+      <p>Navigate to the library:</p>
+      <button onclick="window.location.href='{% url 'books_list' %}'">View the list of books</button>
+      <button onclick="window.location.href='{% url 'add_book' %}'">Add a Book</button>
+      <button onclick="window.location.href='{% url 'library_page' %}'">View your liked books</button>
+      <button onclick="window.location.href='{% url 'members_list' %}'">View the list of Members</button>
+      <button onclick="window.location.href='{% url 'add_member' %}'">Add a Member</button>
+    </div>
+    <form action="{% url 'logout' %}" method="post" id="logout_form">
+      {% csrf_token %}
+      <p class="info-text"><button type="submit" id="logout_button">Log Out</button></p>
+    </form>
+  </div>
 </div>
 {% else %}
-<p>You are not logged in</p>
-<p><a href="{% url 'password_reset' %}">Password Reset</a></p>
-<p><a href="{% url 'login' %}">Log In</a></p>
+<div id="outer">
+  <div id="card">
+    <p class="info-text">Welcome! If you love books, you're at the right place!</p>
+    <p class="info-text">You are not logged in.</p>
+    <button onclick="window.location.href='{% url 'password_reset' %}'">Forgot your password? Reset it here.</button>
+    <button onclick="window.location.href='{% url 'login' %}'">Log In</button>
+    <button onclick="window.location.href='{% url 'signup' %}'">Sign Up</button>
+  </div>
+</div>
 {% endif %}
 {% endblock %}
