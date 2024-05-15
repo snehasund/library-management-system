@@ -34,4 +34,6 @@ urlpatterns = [
     path('library/', views.library_page, name='library_page'),     
     path('edit-form/<int:book_id>/', views.edit_book, name='edit_book'),
     path('edit_member/<int:member_id>/', views.edit_member, name='edit_member'),
+    path('delete_member/<int:member_id>/', views.delete_member, name='delete_member'),
+
 ]

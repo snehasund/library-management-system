@@ -8,6 +8,8 @@ from django_project.models import Borrow, Book, Member, Favorite
 from django_project.forms import BookForm, MemberForm
 
 from django.contrib.auth.decorators import user_passes_test
+from django.views.decorators.http import require_http_methods
+
 
 def user_is_admin(user):
     return user.is_superuser  # Assuming only superusers have admin privileges
@@ -111,3 +113,12 @@ def edit_member(request, member_id):
     else:
         member_form = MemberForm(instance=member)
     return render(request, 'library/edit_member.html', {'member_form': member_form})
+
+@require_http_methods(["DELETE"])
+def delete_member(request, member_id):
+    try:
+        member = Member.objects.get(id=member_id)
+        member.delete()
+        return JsonResponse({'status': 'success'}, status=200)
+    except Member.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Member not found'}, status=404)

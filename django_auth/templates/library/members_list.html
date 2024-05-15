@@ -69,6 +69,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            position: relative; /* Added for positioning delete button */
         }
 
         .profile-picture {
@@ -99,6 +100,14 @@
         .card button:hover {
             background-color: rgb(207, 207, 241);
         }
+
+        .delete-button {
+            position: absolute; /* Positioning delete button */
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -109,12 +118,12 @@
             <h3 id="heading">invite only</h3>
         </div>
     </header>
-    <h1>Members List</h1>
+    <h1>our lovely members</h1>
     <div class="card-container">
         {% for member in members %}
             <div class="card">
                 <div class="profile-picture">
-                    {{ member.name|slice:":1" }}
+                    <p style="text-transform: uppercase;">{{ member.name|slice:":1" }}</p>
                 </div>
                 {{ member.name }}
                 <br>
@@ -122,6 +131,7 @@
                 <br>
                 {{ member.favorite_genre }}
                 <button class="edit-button" onclick="redirectToEditMember('{{ member.id }}')">✎</button>
+                <button class="delete-button" onclick="deleteMember('{{ member.id }}')">🗑</button>
             </div>
         {% endfor %}
     </div>    
@@ -129,6 +139,28 @@
     <script>
         function redirectToEditMember(memberId) {
             window.location.href = "/edit_member/" + memberId;
+        }
+
+        function deleteMember(memberId) {
+            if (confirm('Are you sure you want to delete this member?')) {
+                fetch('/delete_member/' + memberId, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Failed to delete member.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
         }
     </script>
 </body>
