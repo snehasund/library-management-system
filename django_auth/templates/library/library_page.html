@@ -126,6 +126,9 @@
             padding: 0;
             color: rgb(225, 222, 8);
             cursor: pointer;
+            font-size: 20px;
+            margin-top: 20px;
+
         }
     </style>
 </head>
@@ -235,12 +238,11 @@
             <h3 id="heading">invite only</h3>
         </div>
     </header>
-    <h1>{{user.username}} 's Library</h1>
-    <h2>my favorite books:</h2>
+    <h1 style="text-align: center; font-family: 'Playfair Display', serif; font-size: 40px; margin-top: 20px;">{{user.username}} 's liked/saved books</h1>
     {% for favorite in favorites %}
         <div class="card" data-book-id="{{ favorite.book.id }}">
             <img src='https://covers.openlibrary.org/b/isbn/{{favorite.book.isbn}}-M.jpg'/>
-            <div>📚 {{ favorite.book.title }}<br><span id="author">{{ favorite.book.author }}</span> <br><span id="subheading">(ISBN: {{ favorite.book.isbn }})</span><br>
+            <div> {{ favorite.book.title }}<br><span id="author">{{ favorite.book.author }}</span> <br><span id="subheading">(ISBN: {{ favorite.book.isbn }})</span><br>
                 <div id="button-container">
                 <button class="favorite-button button favorite-red" data-book-id="{{ favorite.book.id }}">♡</button>
                 <button class="edit-button button" onclick="redirectToEditForm('{{ favorite.book.id }}')">✎</button> </div> <!-- Add onclick event for redirection -->
