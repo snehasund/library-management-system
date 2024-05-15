@@ -12,6 +12,8 @@ from django.views.decorators.http import require_http_methods
 
 from django.views.decorators.csrf import csrf_exempt
 
+import random
+
 
 def user_is_admin(user):
     return user.is_superuser  # Assuming only superusers have admin privileges
@@ -112,6 +114,10 @@ def delete_book(request, book_id):
         book.delete()
         return JsonResponse({'status': 'deleted'})
     return JsonResponse({'status': 'error'}, status=400)
+
+def recommend_book():
+    pass
+
   
 def edit_member(request, member_id):
     member = Member.objects.get(id=member_id)
