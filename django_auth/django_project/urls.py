@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView 
 from . import views
+from .views import delete_book
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -35,5 +36,5 @@ urlpatterns = [
     path('edit-form/<int:book_id>/', views.edit_book, name='edit_book'),
     path('edit_member/<int:member_id>/', views.edit_member, name='edit_member'),
     path('delete_member/<int:member_id>/', views.delete_member, name='delete_member'),
-
+    path('delete-book/<int:book_id>/', delete_book, name='delete_book'),
 ]

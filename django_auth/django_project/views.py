@@ -10,6 +10,8 @@ from django_project.forms import BookForm, MemberForm
 from django.contrib.auth.decorators import user_passes_test
 from django.views.decorators.http import require_http_methods
 
+from django.views.decorators.csrf import csrf_exempt
+
 
 def user_is_admin(user):
     return user.is_superuser  # Assuming only superusers have admin privileges
@@ -102,6 +104,14 @@ def edit_book(request, book_id):
     else:
         form = BookForm(instance=book)
     return render(request, 'library/edit_form.html', {'form': form})
+
+@csrf_exempt
+def delete_book(request, book_id):
+    if request.method == "POST":
+        book = get_object_or_404(Book, id=book_id)
+        book.delete()
+        return JsonResponse({'status': 'deleted'})
+    return JsonResponse({'status': 'error'}, status=400)
   
 def edit_member(request, member_id):
     member = Member.objects.get(id=member_id)
