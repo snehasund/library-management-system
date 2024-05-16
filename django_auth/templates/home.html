@@ -69,12 +69,12 @@
     <p class="welcome-text">Hi <span style="font-weight: bold">{{ user.username }}</span>, welcome to our book community!</p>
     <div class="info-text">
       <p>Navigate to the library:</p>
-      <button onclick="window.location.href='{% url 'books_list' %}'">View the list of books</button><br>
+      <button onclick="window.location.href='{% url 'books_list' %}'" style="width: 100%; border-radius: 8px;" >View the list of books</button><br>
   
-      <button onclick="window.location.href='{% url 'add_book' %}'">Add a Book</button><br>
-      <button onclick="window.location.href='{% url 'library_page' %}'">View your liked books</button><br>
-      <button onclick="window.location.href='{% url 'members_list' %}'">View the list of Members</button><br>
-      <button onclick="window.location.href='{% url 'add_member' %}'">Add a Member</button>
+      <button onclick="window.location.href='{% url 'add_book' %}'" style="width: 100%; border-radius: 8px; ">Add a Book</button><br>
+      <button onclick="window.location.href='{% url 'library_page' %}'" style="width: 100%; border-radius: 8px;" >View your liked books</button><br>
+      <button onclick="window.location.href='{% url 'members_list' %}'" style="width: 100%; border-radius: 8px;" >View the list of Members</button><br>
+      <button onclick="window.location.href='{% url 'add_member' %}'" style="width: 100%; border-radius: 8px;" >Add a Member</button>
     </div>
     <form action="{% url 'logout' %}" method="post" id="logout_form">
       {% csrf_token %}
