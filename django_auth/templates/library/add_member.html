@@ -112,10 +112,9 @@
             <h1 style="text-align: center;">Add Member</h1>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="text" name="name" placeholder="Full Name" required style="background-color: rgb(207, 207, 241); text-align: center; border-radius: 8px; margin-bottom: 10px;">
-                <input type="text" name="email" placeholder="Email" required style="background-color: rgb(207, 207, 241); text-align: center; border-radius: 8px; margin-bottom: 10px;">
-                <input type="text" name="genre" placeholder="Favorite Genre" required style="background-color: rgb(207, 207, 241); text-align: center; border-radius: 8px; margin-bottom: 20px;">
-
+                {{ form.name }}
+                {{ form.email }}
+                {{ form.favorite_genre }}
                 <button type="submit" style="width: 50%; margin-left: 105px;">Save</button>
             </form>
         </div>

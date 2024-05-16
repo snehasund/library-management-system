@@ -27,4 +27,9 @@ class MemberForm(forms.ModelForm):
     class Meta:
         model = Member
         fields = ['name', 'email', 'favorite_genre']
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Full Name', 'style': "height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 10px;" }),
+            'email': forms.TextInput(attrs={'placeholder': 'Email', 'style': "height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 10px;"}),
+            'favorite_genre': forms.TextInput(attrs={'placeholder': 'Favorite Genre', 'style': "height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 10px;"}),
+        }
     
