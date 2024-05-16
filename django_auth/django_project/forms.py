@@ -8,10 +8,10 @@ class BookForm(forms.ModelForm):
         model = Book
         fields = ['title', 'author', 'genre', 'isbn']
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'book title'}),
-            'author': forms.TextInput(attrs={'placeholder': 'author'}),
-            'genre': forms.TextInput(attrs={'placeholder': 'genre'}),
-            'isbn': forms.TextInput(attrs={'placeholder': 'ISBN number'}),
+            'title': forms.TextInput(attrs={'placeholder': 'book title', 'style': "height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 10px;" }),
+            'author': forms.TextInput(attrs={'placeholder': 'author', 'style': "height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 10px;"}),
+            'genre': forms.TextInput(attrs={'placeholder': 'genre', 'style': "height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 10px;"}),
+            'isbn': forms.TextInput(attrs={'placeholder': 'ISBN number', 'style': "height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 10px;"}),
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -122,11 +122,15 @@
         <div id="card">
             <h1 style="text-align: center;">Add Book</h1>
             <form method="post" novalidate>
-                {% csrf_token %}
-                <input type="text" name="title" placeholder="Book Title" required style="height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 10px;">
-                <input type="text" name="author" placeholder="Author" required style="height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 10px;">
-                <input type="text" name="isbn" placeholder="ISBN" required style="height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 20px;">
-                <button type="submit">Save Book</button>
+            {% csrf_token %}
+            {% comment %} <p><input type="text" name="title" placeholder="Book Title" required style="height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 10px;"></p>
+            <p><input type="text" name="author" placeholder="Author" required style="height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 10px;"></p>
+            <p><input type="text" name="isbn" placeholder="ISBN" required style="height: 40px; border-radius: 8px; text-align: center; background-color: rgb(207, 207, 241); margin-bottom: 20px;"></p> {% endcomment %}
+            {{ form.title }}
+            {{ form.author }}
+            {{ form.genre }}
+            {{ form.isbn }}
+            <button type="submit" style="margin-top: 20px;">Save Book</button>
             </form>
         </div>
     </div>
